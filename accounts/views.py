@@ -18,9 +18,7 @@ import re
 from rest_framework.permissions import IsAdminUser
 from django.core.paginator import Paginator
 
-# -------------------------------
-# HTML BASED VIEWS (KEEP AS IS)
-# -------------------------------
+
 
 @login_required
 def dashboard(request):
@@ -106,9 +104,6 @@ def admin_dashboard(request):
     return render(request, 'accounts/admin_dashboard.html')
 
 
-# -------------------------------
-# API VIEWS (FOR REACT)
-# -------------------------------
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -144,7 +139,7 @@ def api_signup(request):
         password=password
     )
 
-    # Profile auto-created by signal OR create here
+    #check Profile auto-created by signal OR create here
     Profile.objects.get_or_create(user=user)
 
     return Response(
